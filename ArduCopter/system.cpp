@@ -158,6 +158,11 @@ void Copter::init_ardupilot()
     // setup frsky
     frsky_telemetry.init(serial_manager);
 #endif
+    
+#if MOBILE_TELEM_ENABLED == ENABLED
+    // setup frsky
+    mobile_telemetry.init(serial_manager);
+#endif
 
     // identify ourselves correctly with the ground station
     mavlink_system.sysid = g.sysid_this_mav;

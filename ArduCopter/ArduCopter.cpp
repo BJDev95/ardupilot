@@ -142,6 +142,9 @@ const AP_Scheduler::Task Copter::scheduler_tasks[] PROGMEM = {
 #if FRSKY_TELEM_ENABLED == ENABLED
     SCHED_TASK(frsky_telemetry_send,  80,     75),
 #endif
+#if MOBILE_TELEM_ENABLED == ENABLED
+    SCHED_TASK(AP_Mobile_transmit,  80,     75),
+#endif
 #if EPM_ENABLED == ENABLED
     SCHED_TASK(epm_update,            40,     75),
 #endif

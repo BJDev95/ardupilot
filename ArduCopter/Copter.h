@@ -97,6 +97,7 @@
 #include <AP_BattMonitor/AP_BattMonitor.h>     // Battery monitor library
 #include <AP_BoardConfig/AP_BoardConfig.h>     // board configuration library
 #include <AP_Frsky_Telem/AP_Frsky_Telem.h>
+#include <AP_Mobile_Telem/AP_Mobile_Telem.h>
 #if SPRAYER == ENABLED
 #include <AC_Sprayer/AC_Sprayer.h>         // crop sprayer library
 #endif
@@ -372,6 +373,10 @@ private:
     // FrSky telemetry support
 #if FRSKY_TELEM_ENABLED == ENABLED
     AP_Frsky_Telem frsky_telemetry;
+#endif
+    
+#if FRSKY_TELEM_ENABLED == ENABLED
+    AP_Mobile_Telem mobile_telemetry;
 #endif
 
     // Altitude

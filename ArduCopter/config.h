@@ -758,6 +758,11 @@
   #  define FRSKY_TELEM_ENABLED          ENABLED
 #endif
 
+//use this to completely disable MOBILE TELEM
+#ifndef MOBILE_TELEM_ENABLED
+#  define MOBILE_TELEM_ENABLED          ENABLED
+#endif
+
 /*
   build a firmware version string.
   GIT_VERSION comes from Makefile builds
