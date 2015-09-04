@@ -17,6 +17,16 @@
 #ifndef __AP_MOBILE_TELEM_H__
 #define __AP_MOBILE_TELEM_H__
 
+/*#include <AP_HAL/AP_HAL.h>
+#include <AP_Param/AP_Param.h>
+#include <AP_Math/AP_Math.h>
+#include <AP_GPS/AP_GPS.h>
+#include <AP_AHRS/AP_AHRS.h>
+#include <AP_Baro/AP_Baro.h>
+#include <AP_BattMonitor/AP_BattMonitor.h>
+#include <AP_SerialManager/AP_SerialManager.h>
+#include <iostream>*/
+
 #include <AP_HAL/AP_HAL.h>
 #include <AP_Param/AP_Param.h>
 #include <AP_Math/AP_Math.h>
@@ -25,7 +35,7 @@
 #include <AP_Baro/AP_Baro.h>
 #include <AP_BattMonitor/AP_BattMonitor.h>
 #include <AP_SerialManager/AP_SerialManager.h>
-#include <iostream>
+
 #include <string>
 
 using namespace std;
@@ -39,6 +49,8 @@ using namespace std;
 #ifndef MOBILE_BAUD
 #define MOBILE_BAUD 57600
 #endif
+
+#define MOBILE_TELEMETRY_APP FALSE
 
 AP_HAL::UARTDriver* _port;
 char login_username[] = "";
@@ -61,8 +73,12 @@ public:
     //constructor
     AP_Mobile_Telem();
     void AP_Mobile_transmit();
+#if MOBILE_TELEMETRY_APP == TRUE
     void setup();
     void loop();
+#else
+    void init_modem();
+#endif
     char* get_ip() { return _IP; }
     char* get_protocol() { return _IP_protocol; }
     int get_port() {
@@ -97,5 +113,6 @@ private:
     int changeNSIPmode(char mode);
     bool call(char* number, unsigned int wait);
     int getIMEI(char* imei);
+    void clean_buffer();
 };
 #endif

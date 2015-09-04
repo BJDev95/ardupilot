@@ -160,7 +160,7 @@ void Copter::init_ardupilot()
 #endif
     
 #if MOBILE_TELEM_ENABLED == ENABLED
-    // setup frsky
+    // setup mobile
     mobile_telemetry.init(serial_manager);
 #endif
 
@@ -432,10 +432,10 @@ void Copter::frsky_telemetry_send(void)
 }
 #endif
 
-// frsky_telemetry_send - sends telemetry data using frsky telemetry
+// mobile_telemetry_send - sends telemetry data using mobile network
 //  should be called at 5Hz by scheduler
 #if MOBILE_TELEM_ENABLED == ENABLED
-void Copter::frsky_telemetry_send(void)
+void Copter::mobile_telemetry_send(void)
 {
     //mobile_telemetry.send_frames((uint8_t)control_mode);
     mobile_telemetry.AP_Mobile_transmit();
