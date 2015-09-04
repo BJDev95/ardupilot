@@ -760,7 +760,7 @@
 
 //use this to completely disable MOBILE TELEM
 #ifndef MOBILE_TELEM_ENABLED
-#  define MOBILE_TELEM_ENABLED          ENABLED
+  #  define MOBILE_TELEM_ENABLED          ENABLED
 #endif
 
 /*
