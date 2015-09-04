@@ -101,7 +101,7 @@ void AP_Mobile_Telem::setup() {
                 temp[i++] = data;
             }
             temp[i] = 0;
-            String b = temp; // Store response string in "b"
+            string b = temp; // Store response string in "b"
             
             if(b.indexOf("+CREG: 1") > 0 || b.indexOf("+CREG: 2") > 0) { // Remove this?
                 isReady = true;
@@ -143,7 +143,7 @@ void AP_Mobile_Telem::setup() {
     }
 }
 
-bool AP_Mobile_Telem::sendATCommand(String input, String output, int wait) { // AT Command, Expected Result, Delay before issue command
+bool AP_Mobile_Telem::sendATCommand(string input, string output, int wait) { // AT Command, Expected Result, Delay before issue command
     bool resp = false;
     _port->print(input + "\r"); // Send input command to modem
     delay(wait); // Delay function time "wait" variable
@@ -158,7 +158,7 @@ bool AP_Mobile_Telem::sendATCommand(String input, String output, int wait) { // 
             }
             temp[i] = 0;
             
-            String b = temp; // Store response string in "b"
+            string b = temp; // Store response string in "b"
             _port->read(); // Clear buffer again
             
 #if DEBUG == TRUE
@@ -196,7 +196,7 @@ bool AP_Mobile_Telem::sendATCommand(String input, String output, int wait) { // 
     }
 }
 
-bool AP_Mobile_Telem::CheckResp(String output, int wait) { // AT Command, Expected Result, Delay before issue command
+bool AP_Mobile_Telem::CheckResp(string output, int wait) { // AT Command, Expected Result, Delay before issue command
     bool resp = false;
     while(!resp) {
         if(_port->available()) { // Check if response is available
@@ -208,7 +208,7 @@ bool AP_Mobile_Telem::CheckResp(String output, int wait) { // AT Command, Expect
             }
             temp[i] = 0;
             
-            String b = temp; // Store response string in "b"
+            string b = temp; // Store response string in "b"
             _port->read(); // Clear buffer again
             
 #if DEBUG == TRUE
@@ -246,7 +246,7 @@ bool AP_Mobile_Telem::CheckResp(String output, int wait) { // AT Command, Expect
     }
 }
 
-void AP_Mobile_Telem::AP_Mobile_Telem::advanced_configurations() {
+void AP_Mobile_Telem::advanced_configurations() {
     // Reset to the factory settings
     sendATCommand("AT&F", 1000, 50, "OK", 5);
     // switch off echo

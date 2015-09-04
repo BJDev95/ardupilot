@@ -432,6 +432,17 @@ void Copter::frsky_telemetry_send(void)
 }
 #endif
 
+// frsky_telemetry_send - sends telemetry data using frsky telemetry
+//  should be called at 5Hz by scheduler
+#if MOBILE_TELEM_ENABLED == ENABLED
+void Copter::frsky_telemetry_send(void)
+{
+    //mobile_telemetry.send_frames((uint8_t)control_mode);
+    mobile_telemetry.AP_Mobile_transmit();
+}
+#endif
+
+
 /*
   should we log a message type now?
  */

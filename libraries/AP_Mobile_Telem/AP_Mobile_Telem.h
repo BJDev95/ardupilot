@@ -25,6 +25,10 @@
 #include <AP_Baro/AP_Baro.h>
 #include <AP_BattMonitor/AP_BattMonitor.h>
 #include <AP_SerialManager/AP_SerialManager.h>
+#include <iostream>
+#include <string>
+
+using namespace std;
 
 #ifndef MOBILE_BUFSIZE_IN
 #define MOBILE_BUFSIZE_IN 64
@@ -49,7 +53,7 @@ int _timeout = 0;
 #define TIMEOUT 400
 bool _initialised_uart = false;
 bool isReady = false; // GSM modem is Ready to receive AT Commands flag
-String checker = "";
+string checker = "";
 
 class AP_Mobile_Telem
 {
@@ -61,17 +65,16 @@ public:
     void loop();
     char* get_ip() { return _IP; }
     char* get_protocol() { return _IP_protocol; }
-    char* get_port() {
+    int get_port() {
         if (_IP_port == 0)
             _IP_port = 14550; // set default if unset
-        sprintf (_port_str, "%d", (uint16_t) _IP_port);
-        return _port_str;
+        return _IP_port;
     }
-    uint32_t get_baudrate() { return _baudrate; }
+    uint32_t get_baudrate() { return MOBILE_BAUD; }
 
 private:
-    bool sendATCommand(String input, String output, int wait);
-    bool CheckResp(String output, int wait);
+    bool sendATCommand(string input, string output, int wait);
+    bool CheckResp(string output, int wait);
     void advanced_configurations();
     
     // init_uart_for_sport - initialise uart for use by sport
